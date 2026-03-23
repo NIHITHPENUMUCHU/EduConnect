@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* client/src/app/shared/navbar/navbar.component.scss */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :host {
   font-family: 'Inter', sans-serif;
@@ -12,11 +14,12 @@
 
   display: flex;
   align-items: center;
-  padding: 14px 28px;
+  padding: 16px 32px;
 
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 
   animation: slideDown 0.4s ease;
 }
@@ -25,7 +28,7 @@
 .navbar-list {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -33,20 +36,19 @@
 
 /* LOGO / BRAND */
 .app-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-color);
   letter-spacing: 0.5px;
-  margin-right: 10px;
-
+  margin-right: 20px;
   position: relative;
 }
 
 /* NAV LINKS */
 .nav-link {
-  color: #cbd5f5;
+  color: var(--text-muted);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   padding: 6px 4px;
   position: relative;
@@ -57,7 +59,7 @@
   gap: 6px;
 
   &:hover {
-    color: #ffffff;
+    color: var(--text-main);
     transform: translateY(-1px);
   }
 
@@ -69,7 +71,7 @@
     bottom: -4px;
     width: 0%;
     height: 2px;
-    background: #4f46e5;
+    background: var(--primary-color);
     transition: 0.3s;
   }
 
@@ -79,7 +81,7 @@
 
   /* ACTIVE STATE */
   &.active {
-    color: #ffffff;
+    color: var(--primary-color);
 
     &::after {
       width: 100%;

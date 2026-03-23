@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* client/src/styles.scss */
+
+/* Global Theme Variables */
+:root {
+  --primary-color: #10b981;    /* Vibrant Emerald */
+  --primary-hover: #059669;    /* Darker Emerald for hover states */
+  --bg-color: #f8fafc;         /* Light Slate background */
+  --text-main: #1e293b;        /* Dark Slate for main text */
+  --text-muted: #64748b;       /* Lighter Slate for secondary text */
+  --nav-bg: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  --border-color: #e2e8f0;     /* Subtle border line */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Customize Bootstrap primary buttons to match the new Emerald theme */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+}
+
+/* Customize inputs to feel softer */
+.form-control {
+  border-color: var(--border-color);
+  border-radius: 6px;
+}
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+}

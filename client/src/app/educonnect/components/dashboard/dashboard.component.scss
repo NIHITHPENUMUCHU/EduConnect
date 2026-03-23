@@ -1,72 +1,180 @@
-.dashboard-container {
-  padding: 20px;
-  background: #0f172a;
-  min-height: 100vh;
-  color: white;
+.dashboard-layout {
+  padding: 40px 24px;
+  background: var(--bg-color);
+  min-height: calc(100vh - 70px); /* Subtracting navbar roughly */
+  color: var(--text-main);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+/* Modern Header */
+.dashboard-header {
+  margin-bottom: 36px;
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  p.subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin: 0;
+    font-weight: 400;
+  }
 }
 
-/* CARDS */
-.teacher-details,
-.student-details,
-.course-section,
-.enrollment-section,
-.students-section {
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-
+/* Base Card Styling */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   animation: fadeUp 0.5s ease;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
-/* TABLE */
+/* Profile Details specific */
+.profile-details p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  
+  strong {
+    color: var(--text-main);
+    display: inline-block;
+    width: 160px;
+    font-weight: 500;
+  }
+}
+
+.card-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Responsive Table */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  white-space: nowrap;
 }
 
 th {
   text-align: left;
-  padding: 10px;
-  color: #cbd5f5;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 16px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 2px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #f8fafc;
 }
 
 td {
-  padding: 10px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 14px;
+  vertical-align: middle;
 }
 
-tr:hover {
-  background: rgba(255,255,255,0.05);
+tr:hover td {
+  background: #f1f5f9;
 }
 
-/* BUTTONS */
+tr.selected td {
+  background: #ecfdf5; /* Emerald highlight for selected course */
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Buttons */
 button {
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-edit {
-  background: #3b82f6;
-  color: white;
+  background: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+  
+  &:hover {
+    background: #3b82f6;
+    color: white;
+  }
 }
 
 .btn-delete {
-  background: #ef4444;
-  color: white;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+
+  &:hover {
+    background: #ef4444;
+    color: white;
+  }
 }
 
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Empty State */
 .empty-list {
   text-align: center;
-  padding: 10px;
-  color: #f87171;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-style: italic;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
