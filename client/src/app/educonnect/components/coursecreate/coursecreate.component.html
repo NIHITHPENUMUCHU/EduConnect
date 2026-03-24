@@ -1,36 +1,37 @@
-<div class="form-container">
-    <h2>Create a New Course</h2>
-    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="courseName">Course Title</label>
-            <input type="text" id="courseName" formControlName="courseName" placeholder="e.g. Introduction to Physics" />
-            <div *ngIf="courseForm.get('courseName')?.invalid && courseForm.get('courseName')?.touched" class="error">
-                Course Name is required.
+<div class="page-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">Create a New Course</h2>
+        <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <label class="form-label" for="courseName">Course Title</label>
+                <input class="form-input" type="text" id="courseName" formControlName="courseName" placeholder="e.g. Introduction to Physics" />
+                <div *ngIf="courseForm.get('courseName')?.invalid && courseForm.get('courseName')?.touched" class="error-text">
+                    Course Name is required.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="description">Course Description</label>
-            <textarea id="description" formControlName="description" placeholder="Briefly describe what students will learn..."></textarea>
-            <div *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched" class="error">
-                Description must be less than 500 characters.
+            <div class="form-group">
+                <label class="form-label" for="description">Course Description</label>
+                <textarea class="form-input" id="description" formControlName="description" placeholder="Briefly describe what students will learn..."></textarea>
+                <div *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched" class="error-text">
+                    Description must be less than 500 characters.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="teacher">Instructor Name</label>
-            <input type="text" id="teacher" formControlName="teacher" [readonly]="true" class="readonly-input" />
-        </div>
+            <div class="form-group">
+                <label class="form-label" for="teacher">Instructor Name</label>
+                <input class="form-input readonly-input" type="text" id="teacher" formControlName="teacher" [readonly]="true" />
+            </div>
 
-        <div class="form-actions">
-            <button type="submit" [disabled]="courseForm.invalid">Publish Course</button>
-        </div>
+            <button class="btn-submit" type="submit" [disabled]="courseForm.invalid">Publish Course</button>
 
-        <div class="form-footer">
-            <a routerLink="/educonnect">← Back to Dashboard</a>
-        </div>
+            <div class="form-footer">
+                <a routerLink="/educonnect">← Back to Dashboard</a>
+            </div>
 
-        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    </form>
+            <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
+        </form>
+    </div>
 </div>

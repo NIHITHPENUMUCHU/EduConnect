@@ -133,3 +133,33 @@ app-logout {
     transform: translateY(0);
   }
 }
+
+/* Add this anywhere in your navbar SCSS file */
+.app-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and text */
+  margin-right: 20px;
+}
+
+.app-logo {
+  width: 32px;
+  height: 32px;
+  color: #4f46e5; /* Vibrant Indigo to match your theme */
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Ensure the app name text looks good next to it */
+.app-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a; /* Slate text */
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+

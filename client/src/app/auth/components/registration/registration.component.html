@@ -1,99 +1,109 @@
-<div class="page-wrapper">
-    <div class="form-card">
-        <h2 class="form-title">Create an Account</h2>
-        
-        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<div class="auth-layout">
+    <div class="auth-image-side">
+        <div class="image-overlay-bg"></div>
+        <div class="image-content">
+            <h2>Join the Community</h2>
+            <p>Create an account to start managing courses and connecting with students seamlessly in a modern workspace.</p>
+        </div>
+    </div>
+
+    <div class="auth-form-side">
+        <div class="form-card scrollable-form">
+            <h2 class="form-title">Create an Account</h2>
             
-            <div class="form-group">
-                <label class="form-label" for="fullName">Full Name</label>
-                <input class="form-input" type="text" id="fullName" formControlName="fullName" placeholder="e.g. Jane Doe" />
-                <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched" class="error-text">
-                    <small *ngIf="registrationForm.get('fullName')?.hasError('required')">Full Name is required.</small>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="username">Username</label>
-                <input class="form-input" type="text" id="username" formControlName="username" placeholder="Choose a unique username" />
-                <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="error-text">
-                    <small *ngIf="registrationForm.get('username')?.hasError('required')">Username is required.</small>
-                    <small *ngIf="registrationForm.get('username')?.hasError('pattern')">Username cannot contain special characters.</small>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input class="form-input" type="email" id="email" formControlName="email" placeholder="jane@example.com" />
-                <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="error-text">
-                    <small *ngIf="registrationForm.get('email')?.hasError('required')">Email is required.</small>
-                    <small *ngIf="registrationForm.get('email')?.hasError('email')">Please enter a valid email address.</small>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="contactNumber">Contact Number</label>
-                <input class="form-input" type="text" id="contactNumber" formControlName="contactNumber" placeholder="10-digit mobile number" />
-                <div *ngIf="registrationForm.controls['contactNumber'].invalid && registrationForm.controls['contactNumber'].touched" class="error-text">
-                    Contact number must be 10 digits.
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="role">Account Role</label>
-                <select class="form-input" id="role" formControlName="role" (change)="onRoleChange($event)">
-                    <option value="">-- Select Your Role --</option>
-                    <option value="TEACHER">Teacher</option>
-                    <option value="STUDENT">Student</option>
-                </select>
-                <div *ngIf="registrationForm.controls['role'].invalid && registrationForm.controls['role'].touched" class="error-text">
-                    Please select a role.
-                </div>
-            </div>
-
-            <ng-container *ngIf="selectedRole === 'TEACHER'">
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                
                 <div class="form-group">
-                    <label class="form-label" for="subject">Teaching Subject</label>
-                    <input class="form-input" type="text" id="subject" formControlName="subject" placeholder="e.g. Mathematics" />
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input class="form-input" type="text" id="fullName" formControlName="fullName" placeholder="e.g. Jane Doe" />
+                    <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched" class="error-text">
+                        <small *ngIf="registrationForm.get('fullName')?.hasError('required')">Full Name is required.</small>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label" for="yearsOfExperience">Years of Experience</label>
-                    <input class="form-input" type="number" id="yearsOfExperience" formControlName="yearsOfExperience" placeholder="e.g. 5" />
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-input" type="text" id="username" formControlName="username" placeholder="Choose a unique username" />
+                    <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="error-text">
+                        <small *ngIf="registrationForm.get('username')?.hasError('required')">Username is required.</small>
+                        <small *ngIf="registrationForm.get('username')?.hasError('pattern')">Username cannot contain special characters.</small>
+                    </div>
                 </div>
-            </ng-container>
 
-            <ng-container *ngIf="selectedRole === 'STUDENT'">
                 <div class="form-group">
-                    <label class="form-label" for="dateOfBirth">Date of Birth</label>
-                    <input class="form-input" type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+                    <label class="form-label" for="email">Email Address</label>
+                    <input class="form-input" type="email" id="email" formControlName="email" placeholder="jane@example.com" />
+                    <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="error-text">
+                        <small *ngIf="registrationForm.get('email')?.hasError('required')">Email is required.</small>
+                        <small *ngIf="registrationForm.get('email')?.hasError('email')">Please enter a valid email address.</small>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label" for="address">Home Address</label>
-                    <textarea class="form-input" id="address" formControlName="address" placeholder="Enter your full address"></textarea>
+                    <label class="form-label" for="contactNumber">Contact Number</label>
+                    <input class="form-input" type="text" id="contactNumber" formControlName="contactNumber" placeholder="10-digit mobile number" />
+                    <div *ngIf="registrationForm.controls['contactNumber'].invalid && registrationForm.controls['contactNumber'].touched" class="error-text">
+                        Contact number must be 10 digits.
+                    </div>
                 </div>
-            </ng-container>
 
-            <div class="form-group">
-                <label class="form-label" for="password">Password</label>
-                <input class="form-input" type="password" id="password" formControlName="password" placeholder="Create a strong password" />
-                <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="error-text">
-                    <small *ngIf="registrationForm.get('password')?.hasError('required')">Password is required.</small><br>
-                    <small *ngIf="registrationForm.get('password')?.hasError('minlength')">Must be at least 8 characters long.</small><br>
-                    <small *ngIf="registrationForm.get('password')?.hasError('pattern')">Must contain 1 capital letter and 1 number.</small>
+                <div class="form-group">
+                    <label class="form-label" for="role">Account Role</label>
+                    <select class="form-input" id="role" formControlName="role" (change)="onRoleChange($event)">
+                        <option value="">-- Select Your Role --</option>
+                        <option value="TEACHER">Teacher</option>
+                        <option value="STUDENT">Student</option>
+                    </select>
+                    <div *ngIf="registrationForm.controls['role'].invalid && registrationForm.controls['role'].touched" class="error-text">
+                        Please select a role.
+                    </div>
                 </div>
-            </div>
 
-            <button class="btn-submit" type="submit" [disabled]="registrationForm.invalid">Create Account</button>
-            
-            <div class="form-footer">
-                Already have an account? <a routerLink="/auth" class="footer-link">Login here</a>
-            </div>
+                <ng-container *ngIf="selectedRole === 'TEACHER'">
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Teaching Subject</label>
+                        <input class="form-input" type="text" id="subject" formControlName="subject" placeholder="e.g. Mathematics" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="yearsOfExperience">Years of Experience</label>
+                        <input class="form-input" type="number" id="yearsOfExperience" formControlName="yearsOfExperience" placeholder="e.g. 5" />
+                    </div>
+                </ng-container>
 
-            <div *ngIf="successMessage" class="alert-success">
-                {{ successMessage }}
-            </div>
-            <div *ngIf="errorMessage" class="alert-error">
-                {{ errorMessage }}
-            </div>
-        </form>
+                <ng-container *ngIf="selectedRole === 'STUDENT'">
+                    <div class="form-group">
+                        <label class="form-label" for="dateOfBirth">Date of Birth</label>
+                        <input class="form-input" type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="address">Home Address</label>
+                        <textarea class="form-input" id="address" formControlName="address" placeholder="Enter your full address"></textarea>
+                    </div>
+                </ng-container>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-input" type="password" id="password" formControlName="password" placeholder="Create a strong password" />
+                    <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="error-text">
+                        <small *ngIf="registrationForm.get('password')?.hasError('required')">Password is required.</small><br>
+                        <small *ngIf="registrationForm.get('password')?.hasError('minlength')">Must be at least 8 characters long.</small><br>
+                        <small *ngIf="registrationForm.get('password')?.hasError('pattern')">Must contain 1 capital letter and 1 number.</small>
+                    </div>
+                </div>
+
+                <button class="btn-submit" type="submit" [disabled]="registrationForm.invalid">Create Account</button>
+                
+                <div class="form-footer">
+                    Already have an account? <a routerLink="/auth" class="footer-link">Login here</a>
+                </div>
+
+                <div *ngIf="successMessage" class="alert-success">
+                    {{ successMessage }}
+                </div>
+                <div *ngIf="errorMessage" class="alert-error">
+                    {{ errorMessage }}
+                </div>
+            </form>
+        </div>
     </div>
 </div>

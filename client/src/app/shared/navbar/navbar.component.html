@@ -1,13 +1,24 @@
 <nav class="navbar">
     <ul class="navbar-list">
-        <li><a routerLink="/educonnect" class="nav-link app-name">EduConnect</a></li>
+        
+        <li>
+            <a routerLink="/educonnect" class="nav-link app-brand-container" style="text-decoration: none;">
+                <svg class="app-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L1 9L4 10.63V15C4 16.66 7.58 18 12 18C16.42 18 20 16.66 20 15V10.63L23 9L12 3ZM12 16C8.69 16 6 15.1 6 15V11.73L12 15L18 11.73V15C18 15.1 15.31 16 12 16ZM22 17V11.17L20 12.27V17H22Z"/>
+                </svg>
+                <span class="app-name">EduConnect</span>
+            </a>
+        </li>
 
         <li *ngIf="role === 'TEACHER'">
             <a routerLink="/educonnect/course" class="nav-link">Add Course</a>
         </li>
-        <li><a routerLink="/educonnect/enrollment" class="nav-link">Add Enrollment</a></li>
+        
+        <li>
+            <a routerLink="/educonnect/enrollment" class="nav-link">Add Enrollment</a>
+        </li>
+        
     </ul>
 
-    <!-- Logout button component -->
     <app-logout></app-logout>
 </nav>
