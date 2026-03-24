@@ -1,27 +1,33 @@
+<app-navbar></app-navbar>
 <div class="page-wrapper">
     <div class="form-card">
         <h2 class="form-title">Create a New Course</h2>
         <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-            
+
             <div class="form-group">
                 <label class="form-label" for="courseName">Course Title</label>
-                <input class="form-input" type="text" id="courseName" formControlName="courseName" placeholder="e.g. Introduction to Physics" />
-                <div *ngIf="courseForm.get('courseName')?.invalid && courseForm.get('courseName')?.touched" class="error-text">
+                <input class="form-input" type="text" id="courseName" formControlName="courseName"
+                    placeholder="e.g. Introduction to Physics" />
+                <div *ngIf="courseForm.get('courseName')?.invalid&&courseForm.get('courseName')?.touched"
+                    class="error-text">
                     Course Name is required.
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="description">Course Description</label>
-                <textarea class="form-input" id="description" formControlName="description" placeholder="Briefly describe what students will learn..."></textarea>
-                <div *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched" class="error-text">
+                <textarea class="form-input" id="description" formControlName="description"
+                    placeholder="Briefly describe what students will learn..."></textarea>
+                <div *ngIf="courseForm.get('description')?.invalid&&courseForm.get('description')?.touched"
+                    class="error-text">
                     Description must be less than 500 characters.
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="teacher">Instructor Name</label>
-                <input class="form-input readonly-input" type="text" id="teacher" formControlName="teacher" [readonly]="true" />
+                <input class="form-input readonly-input" type="text" id="teacher" formControlName="teacher"
+                    [readonly]="true" />
             </div>
 
             <button class="btn-submit" type="submit" [disabled]="courseForm.invalid">Publish Course</button>
@@ -30,8 +36,9 @@
                 <a routerLink="/educonnect">← Back to Dashboard</a>
             </div>
 
-            <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
-            <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
+            <div *ngIf="successMessage" class="alert-success">{{successMessage}}</div>
+            <div *ngIf="errorMessage" class="alert-error">{{errorMessage}}</div>
+
         </form>
     </div>
 </div>

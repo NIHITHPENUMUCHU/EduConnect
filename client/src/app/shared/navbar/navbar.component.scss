@@ -1,165 +1,168 @@
-/* client/src/app/shared/navbar/navbar.component.scss */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :host {
   font-family: 'Inter', sans-serif;
-}
-
-/* NAVBAR */
-.navbar {
+  display: block;
   position: sticky;
   top: 0;
   z-index: 1000;
-
-  display: flex;
-  align-items: center;
-  padding: 16px 32px;
-
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-
-  animation: slideDown 0.4s ease;
 }
 
-/* LEFT SECTION */
-.navbar-list {
+/* --- Main Navbar Container --- */
+.modern-navbar {
+  background: rgba(255, 255, 255, 0.85);
+  /* Semi-transparent white */
+  backdrop-filter: blur(12px);
+  /* Glassmorphism blur */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+  /* Slate 200 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  animation: slideDown 0.4s ease-out;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5%;
+  height: 70px;
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: space-between;
+}
+
+/* --- Brand / Logo --- */
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  outline: none;
+}
+
+.app-logo {
+  width: 36px;
+  height: 36px;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  filter: drop-shadow(0 6px 8px rgba(79, 70, 229, 0.25));
+}
+
+.app-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  /* Slate 900 */
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* --- Navigation Menu --- */
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 48px;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* LOGO / BRAND */
-.app-name {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--primary-color);
-  letter-spacing: 0.5px;
-  margin-right: 20px;
-  position: relative;
+.nav-item {
+  display: block;
 }
 
-/* NAV LINKS */
 .nav-link {
-  color: var(--text-muted);
+  color: #64748b;
+  /* Slate 500 */
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 6px 4px;
-  position: relative;
-  transition: all 0.25s ease;
-
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 
   &:hover {
-    color: var(--text-main);
-    transform: translateY(-1px);
+    color: #0f172a;
+    /* Slate 900 */
+    background-color: #f1f5f9;
+    /* Slate 100 pill on hover */
   }
 
-  /* underline animation */
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: var(--primary-color);
-    transition: 0.3s;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
-
-  /* ACTIVE STATE */
+  /* Active Route Styling */
   &.active {
-    color: var(--primary-color);
-
-    &::after {
-      width: 100%;
-    }
+    color: #4f46e5;
+    /* Indigo */
+    background-color: #e0e7ff;
+    /* Light Indigo pill */
   }
 }
 
-/* RIGHT SIDE (LOGOUT) */
-app-logout {
-  margin-left: auto;
+/* --- Actions (Logout) --- */
+.nav-actions {
   display: flex;
   align-items: center;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-  }
-
-  .navbar-list {
-    flex-direction: column;
-    width: 100%;
-    gap: 14px;
-    margin-top: 10px;
-  }
-
-  .nav-link {
-    width: 100%;
-    padding: 8px 0;
-  }
-
-  app-logout {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-
-/* ===== ANIMATION ===== */
+/* --- Animations --- */
 @keyframes slideDown {
   from {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Add this anywhere in your navbar SCSS file */
-.app-brand-container {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between logo and text */
-  margin-right: 20px;
-}
-
-.app-logo {
-  width: 32px;
-  height: 32px;
-  color: #4f46e5; /* Vibrant Indigo to match your theme */
-  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
 @keyframes popIn {
-  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% {
+    transform: scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
-/* Ensure the app name text looks good next to it */
-.app-name {
-  font-size: 22px;
-  font-weight: 800;
-  color: #0f172a; /* Slate text */
-  letter-spacing: -0.5px;
-  margin: 0;
-}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .nav-container {
+    height: auto;
+    flex-direction: column;
+    padding: 16px 20px;
+    gap: 16px;
+  }
 
+  .nav-menu {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-list {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+  }
+}

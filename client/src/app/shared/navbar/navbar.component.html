@@ -1,24 +1,48 @@
-<nav class="navbar">
-    <ul class="navbar-list">
-        
-        <li>
-            <a routerLink="/educonnect" class="nav-link app-brand-container" style="text-decoration: none;">
-                <svg class="app-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3L1 9L4 10.63V15C4 16.66 7.58 18 12 18C16.42 18 20 16.66 20 15V10.63L23 9L12 3ZM12 16C8.69 16 6 15.1 6 15V11.73L12 15L18 11.73V15C18 15.1 15.31 16 12 16ZM22 17V11.17L20 12.27V17H22Z"/>
+<header class="modern-navbar">
+    <div class="nav-container">
+
+        <div class="nav-brand">
+            <a routerLink="/educonnect" class="brand-link">
+                <svg class="app-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 3L3 10.5L18 18L33 10.5L18 3Z" fill="url(#logo-gradient)" />
+                    <path d="M3 10.5V25.5L18 33V18L3 10.5Z" fill="#4338ca" />
+                    <path d="M33 10.5V25.5L18 33V18L33 10.5Z" fill="#312e81" />
+                    <path d="M18 18V33" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M18 18L3 10.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M18 18L33 10.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="18" cy="8" r="2.5" fill="#ffffff" />
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#818cf8" />
+                            <stop offset="100%" stop-color="#4f46e5" />
+                        </linearGradient>
+                    </defs>
                 </svg>
                 <span class="app-name">EduConnect</span>
             </a>
-        </li>
+        </div>
 
-        <li *ngIf="role === 'TEACHER'">
-            <a routerLink="/educonnect/course" class="nav-link">Add Course</a>
-        </li>
-        
-        <li>
-            <a routerLink="/educonnect/enrollment" class="nav-link">Add Enrollment</a>
-        </li>
-        
-    </ul>
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item" *ngIf="role === 'TEACHER'">
+                    <a routerLink="/educonnect/course" routerLinkActive="active" class="nav-link">
+                        Add Course
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/educonnect/enrollment" routerLinkActive="active" class="nav-link">
+                        Add Enrollment
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-    <app-logout></app-logout>
-</nav>
+        <div class="nav-actions">
+            <app-logout></app-logout>
+        </div>
+
+    </div>
+</header>

@@ -1,75 +1,75 @@
-<div class="form-container">
-    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
-        <h2>Update Teacher Profile</h2>
+<app-navbar></app-navbar>
+<div class="page-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">Update Teacher Profile</h2>
         
-        <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" formControlName="fullName" placeholder="e.g. John Smith" />
-            <div *ngIf="teacherForm.get('fullName')?.invalid && teacherForm.get('fullName')?.touched" class="error">
-                Full Name is required.
+        <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <label class="form-label" for="fullName">Full Name</label>
+                <input class="form-input" type="text" id="fullName" formControlName="fullName" placeholder="e.g. John Smith" />
+                <div *ngIf="teacherForm.get('fullName')?.invalid && teacherForm.get('fullName')?.touched" class="error-text">
+                    Full Name is required.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" formControlName="username" placeholder="Choose a unique username" />
-            <div *ngIf="teacherForm.get('username')?.invalid && teacherForm.get('username')?.touched" class="error">
-                <small *ngIf="teacherForm.get('username')?.hasError('required')">Username is required.</small>
-                <small *ngIf="teacherForm.get('username')?.hasError('pattern')">Username cannot contain special characters.</small>
+            <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-input readonly-input" type="text" id="username" formControlName="username" [readonly]="true" />
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="password">New Password (Optional)</label>
-            <input type="password" id="password" formControlName="password" placeholder="Enter new password to change" />
-            <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched" class="error">
-                <small *ngIf="teacherForm.get('password')?.hasError('required')">Password is required.</small>
-                <small *ngIf="teacherForm.get('password')?.hasError('minlength')">Password must be at least 8 characters long.</small>
-                <small *ngIf="teacherForm.get('password')?.hasError('pattern')">Password must contain at least one capital letter and one numeric digit.</small>
+            <div class="form-group">
+                <label class="form-label" for="password">New Password (Optional)</label>
+                <input class="form-input" type="password" id="password" formControlName="password" placeholder="Enter new password to change" />
+                <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched" class="error-text">
+                    <small *ngIf="teacherForm.get('password')?.hasError('required')">Password is required.</small><br>
+                    <small *ngIf="teacherForm.get('password')?.hasError('minlength')">Must be at least 8 characters long.</small><br>
+                    <small *ngIf="teacherForm.get('password')?.hasError('pattern')">Must contain 1 capital letter and 1 number.</small>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="contactNumber">Contact Number</label>
-            <input type="text" id="contactNumber" formControlName="contactNumber" placeholder="10-digit mobile number" />
-            <div *ngIf="teacherForm.get('contactNumber')?.invalid && teacherForm.get('contactNumber')?.touched" class="error">
-                Contact Number must be 10 digits.
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <label class="form-label" for="contactNumber">Contact Number</label>
+                    <input class="form-input" type="text" id="contactNumber" formControlName="contactNumber" placeholder="10-digit number" />
+                    <div *ngIf="teacherForm.get('contactNumber')?.invalid && teacherForm.get('contactNumber')?.touched" class="error-text">
+                        Must be 10 digits.
+                    </div>
+                </div>
+
+                <div class="form-group half-width">
+                    <label class="form-label" for="yearsOfExperience">Experience (Years)</label>
+                    <input class="form-input" type="number" id="yearsOfExperience" formControlName="yearsOfExperience" placeholder="e.g. 5" />
+                    <div *ngIf="teacherForm.get('yearsOfExperience')?.invalid && teacherForm.get('yearsOfExperience')?.touched" class="error-text">
+                        Minimum 1 year required.
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" formControlName="email" placeholder="john.smith@example.com" />
-            <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" class="error">
-                A valid email is required.
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" formControlName="email" placeholder="john.smith@example.com" />
+                <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" class="error-text">
+                    A valid email is required.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="subject">Teaching Subject</label>
-            <input type="text" id="subject" formControlName="subject" placeholder="e.g. Advanced Calculus" />
-            <div *ngIf="teacherForm.get('subject')?.invalid && teacherForm.get('subject')?.touched" class="error">
-                Subject is required.
+            <div class="form-group">
+                <label class="form-label" for="subject">Teaching Subject</label>
+                <input class="form-input" type="text" id="subject" formControlName="subject" placeholder="e.g. Advanced Calculus" />
+                <div *ngIf="teacherForm.get('subject')?.invalid && teacherForm.get('subject')?.touched" class="error-text">
+                    Subject is required.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="yearsOfExperience">Years of Experience</label>
-            <input type="number" id="yearsOfExperience" formControlName="yearsOfExperience" placeholder="e.g. 5" />
-            <div *ngIf="teacherForm.get('yearsOfExperience')?.invalid && teacherForm.get('yearsOfExperience')?.touched" class="error">
-                Minimum 1 year of experience is required.
+            <button class="btn-submit" type="submit" [disabled]="teacherForm.invalid">Save Changes</button>
+            
+            <div class="form-footer">
+                <a routerLink="/educonnect">← Back to Dashboard</a>
             </div>
-        </div>
 
-        <div class="form-actions">
-            <button type="submit" [disabled]="teacherForm.invalid">Save Changes</button>
-        </div>
-        
-        <div class="form-footer">
-            <a routerLink="/educonnect">← Back to Dashboard</a>
-        </div>
-
-        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    </form>
+            <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
+        </form>
+    </div>
 </div>
