@@ -146,15 +146,16 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['educonnect/course/edit', courseId]);
     }
 
-    deleteCourse(courseId: number): void {
-        if (confirm('Are you sure you want to delete your course profile?')) {
-            this.educonnectService.deleteCourse(courseId).subscribe({
-                next: () => {
-                    this.router.navigate(['/']);
-                },
-                error: (error) => console.error('Error deleting course:', error)
-
-            })
-        }
-    }
+   deleteCourse(courseId: number): void {
+  if (confirm('Are you sure you want to delete your course profile?')) {
+    this.educonnectService.deleteCourse(courseId).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/educonnect']);
+        });
+      },
+      error: (error) => console.error('Error deleting course:', error)
+    });
+  }
+}
 }
