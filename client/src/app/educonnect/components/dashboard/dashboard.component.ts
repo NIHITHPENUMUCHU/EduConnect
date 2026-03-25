@@ -5,7 +5,6 @@ import { Enrollment } from '../../models/Enrollment';
 import { Student } from '../../models/Student';
 import { EduConnectService } from '../../services/educonnect.service';
 
-
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -33,12 +32,10 @@ export class DashboardComponent implements OnInit {
         this.userId = Number(localStorage.getItem("user_id"));
         this.teacherId = Number(localStorage.getItem("teacher_id"));
         this.studentId = Number(localStorage.getItem("student_id"));
+        
         if (this.role === 'TEACHER') {
-            console.log('loadTeacherData');
             this.loadTeacherData();
-        }
-        else {
-            console.log('loadStudentData');
+        } else {
             this.loadStudentData();
         }
     }
@@ -64,7 +61,8 @@ export class DashboardComponent implements OnInit {
 
         this.educonnectService.getAllStudents().subscribe({
             next: (response) => {
-                this.students = response;
+                // FIX: Automatically sort the students by their ID in ascending order!
+                this.students = response.sort((a, b) => a.studentId - b.studentId);
             },
             error: (error) => console.log('Error loading all students.', error)
         });
@@ -77,16 +75,15 @@ export class DashboardComponent implements OnInit {
             },
             error: (error) => console.log('Error loading loggedIn student details', error)
         });
+
         this.educonnectService.getEnrollmentsByStudent(this.studentId).subscribe({
             next: (response) => {
+                // FIX: Automatically sort the enrollments by ID if needed, or leave as is
                 this.enrollments = response;
-                if (this.courses.length > 0) {
-                    this.selectedCourseId = this.courses[0].courseId;
-                    this.loadEnrollments(this.selectedCourseId);
-                }
             },
             error: (error) => console.log('Error loading enrollments for logged in student.', error)
         });
+
         this.educonnectService.getAllCourses().subscribe({
             next: (response) => {
                 this.courses = response;
@@ -94,7 +91,6 @@ export class DashboardComponent implements OnInit {
             error: (error) => console.log('Error loading all courses.', error)
         });
     }
-
 
     loadEnrollments(courseId: number): void {
         this.educonnectService.getEnrollmentsByCourse(courseId).subscribe({
@@ -121,7 +117,6 @@ export class DashboardComponent implements OnInit {
                     this.router.navigate(['/']);
                 },
                 error: (error) => console.error('Error deleting student:', error)
-
             })
         }
     }
@@ -137,7 +132,6 @@ export class DashboardComponent implements OnInit {
                     this.router.navigate(['/']);
                 },
                 error: (error) => console.error('Error deleting teacher:', error)
-
             })
         }
     }
@@ -146,16 +140,16 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['educonnect/course/edit', courseId]);
     }
 
-   deleteCourse(courseId: number): void {
-  if (confirm('Are you sure you want to delete your course profile?')) {
-    this.educonnectService.deleteCourse(courseId).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/educonnect']);
-        });
-      },
-      error: (error) => console.error('Error deleting course:', error)
-    });
-  }
-}
+    deleteCourse(courseId: number): void {
+        if (confirm('Are you sure you want to delete your course?')) {
+            this.educonnectService.deleteCourse(courseId).subscribe({
+                next: () => {
+                    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                        this.router.navigate(['/educonnect']);
+                    });
+                },
+                error: (error) => console.error('Error deleting course:', error)
+            });
+        }
+    }
 }

@@ -19,17 +19,22 @@ export class RegistrationComponent {
     ngOnInit(): void {
         this.registrationForm = this.formBuilder.group({
             username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
-            email: ['', [Validators.required, Validators.email]],
+            
+            email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+            
             password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/)]],
             role: ['', [Validators.required]],
             fullName: ['', Validators.required],
-            contactNumber: ['', Validators.required],
+            
+            contactNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+            
             subject: [''], // Teacher-specific field
             yearsOfExperience: [null], // Teacher-specific field
             dateOfBirth: [null], // Student-specific field
             address: [''], // Student-specific field
         });
     }
+    
 
     onRoleChange(event: Event): void {
         const selectElement = event.target as HTMLSelectElement;

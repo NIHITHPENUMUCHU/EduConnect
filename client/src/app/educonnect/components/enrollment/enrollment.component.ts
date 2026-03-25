@@ -76,21 +76,28 @@ export class EnrollmentComponent implements OnInit {
       error: (error) => console.log('Error loading courses.', error)
     });
   }
-
+  
   onSubmit(): void {
     if (this.enrollmentForm.valid) {
+      const formValue = this.enrollmentForm.getRawValue();
+      
       const enrollmentData: Enrollment = {
-        ...this.enrollmentForm.getRawValue(),
-        student: this.role === 'STUDENT' ? this.student : this.enrollmentForm.getRawValue().student
-      }
+        enrollmentId: formValue.enrollmentId,
+        course: formValue.course,
+        // Ensure the correct object is passed based on the role
+        student: this.role === 'STUDENT' ? this.student : formValue.student,
+        enrollmentDate: formValue.enrollmentDate
+      };
+
       this.educonnectService.createEnrollment(enrollmentData).subscribe({
         next: () => {
           this.successMessage = 'Enrollment created successfully!';
           this.errorMessage = null;
           this.enrollmentForm.reset();
+          
           if (this.role === 'STUDENT') {
             // Repopulate the student field and disable it again
-            this.enrollmentForm.patchValue({ student: this.student });
+            this.enrollmentForm.patchValue({ student: this.student.fullName });
             this.enrollmentForm.get('student')?.disable();
           }
         },
@@ -98,7 +105,6 @@ export class EnrollmentComponent implements OnInit {
       });
     }
   }
-
 
 
   private handleError(error: HttpErrorResponse): void {

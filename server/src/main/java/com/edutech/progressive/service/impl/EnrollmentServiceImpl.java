@@ -1,5 +1,8 @@
 package com.edutech.progressive.service.impl;
+
+import com.edutech.progressive.entity.Course;
 import com.edutech.progressive.entity.Enrollment;
+import com.edutech.progressive.entity.Student;
 import com.edutech.progressive.repository.CourseRepository;
 import com.edutech.progressive.repository.EnrollmentRepository;
 import com.edutech.progressive.repository.StudentRepository;
@@ -7,7 +10,6 @@ import com.edutech.progressive.service.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,11 +35,21 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         int studentId = enrollment.getStudent().getStudentId();
         int courseId = enrollment.getCourse().getCourseId();
 
+        // Check if already enrolled
         if (enrollmentRepository.findByStudent_StudentIdAndCourse_CourseId(studentId, courseId).isPresent()) {
             throw new RuntimeException("Student is already enrolled in this course.");
         }
 
+        // FIX: Fetch the actual managed entities from the database to prevent detached entity bugs!
+        Student managedStudent = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+        Course managedCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        enrollment.setStudent(managedStudent);
+        enrollment.setCourse(managedCourse);
         enrollment.setEnrollmentDate(new Date());
+        
         return enrollmentRepository.save(enrollment).getEnrollmentId();
     }
 
